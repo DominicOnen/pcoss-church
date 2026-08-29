@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — PCSS Control Portal</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+    /* Clean layout formatting matching your church site styling[cite: 4] */
+    .admin-box { 
+      max-width: 550px; 
+      margin: 40px auto; 
+      padding: 32px; 
+      background: #1a1a1a; 
+      border-radius: 8px; 
+      border: 1px solid rgba(255,255,255,0.1); 
+      color: #fffcf5;
+    }
+    .form-field {
+      margin-bottom: 20px;
+    }
+    .form-field label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #e3b95c;
+    }
+    .form-field input, .form-field textarea, .form-field select {
+      width: 100%;
+      padding: 10px;
+      background: #262626;
+      border: 1px solid #444;
+      border-radius: 4px;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+      border-color: #c69a3b;
+      outline: none;
+    }
+</style>
+</head>
+<body>
+
+<section class="page-hero" style="text-align: center; padding: 40px 0 10px 0;">
+  <div class="container">
+    <p class="eyebrow" style="color:#e3b95c;">PCSS Management Portal</p>
+    <h1>Central Control Dashboard</h1>
+    <p>Manage all church updates, sermons, and activities from one location.</p>
+  </div>
+</section>
+
+<div class="container">
+
+    <!-- ===================== FORM 1: PUBLISH EVENTS & ANNOUNCEMENTS ===================== -->
+    <div class="admin-box">
+        <h2 style="margin-bottom: 6px; color: #fffcf5;">1. Church News & Upcoming Events</h2>
+        <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Updates feed straight to the Home (index) and Updates (events) pages.</p>
+
+        <form action="save-update.php" method="POST">
+            <div class="form-field">
+                <label for="type">Post Type Location</label>
+                <select id="type" name="type" required>
+                    <option value="announcement">Church News / Announcement (Shows on Home & Updates)</option>
+                    <option value="event">Upcoming Event (Shows on Updates Page Grid)</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="update_title">Headline / Title</label>
+                <input type="text" id="update_title" name="title" required placeholder="e.g., General Assembly 2026">
+            </div>
+            <div class="form-field">
+                <label for="date_display">Friendly Date Text</label>
+                <input type="text" id="date_display" name="date_display" required placeholder="e.g., Sunday, July 12 or Aug 3–5">
+            </div>
+            <div class="form-field">
+                <label for="event_date">Calendar Sort Date</label>
+                <input type="date" id="event_date" name="event_date">
+                <small style="color: #888; display: block; margin-top: 4px;">Used to chronologically order upcoming items.</small>
+            </div>
+            <div class="form-field">
+                <label for="description">Content Details</label>
+                <textarea id="description" name="description" required placeholder="Enter description text..." style="height: 100px; resize: vertical;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; background: #c69a3b; border-color: #c69a3b; color:#000; font-weight:bold; cursor:pointer;">Publish Update Live</button>
+        </form>
+    </div>
+
+    <!-- ===================== FORM 2: UPLOAD SERMON ===================== -->
+    <div class="admin-box">
+        <h2 style="margin-bottom: 6px; color: #fffcf5;">2. Publish New Sermon Archive</h2>
+        <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Saves video links and records into the sermons directory.</p>
+
+        <form action="save-sermon.php" method="POST">
+            <div class="form-field">
+                <label for="title">Sermon Title</label>
+                <input type="text" id="title" name="title" required placeholder="e.g., Walking in the Spirit">
+            </div>
+            <div class="form-field">
+                <label for="preacher">Preacher Name</label>
+                <input type="text" id="preacher" name="preacher" required placeholder="e.g., Pastor John Luk">
+            </div>
+            <div class="form-field">
+                <label for="scripture">Scripture Reference</label>
+                <input type="text" id="scripture" name="scripture" placeholder="e.g., Galatians 5:16-26">
+            </div>
+            <div class="form-field">
+                <label for="youtube_url">YouTube Video URL</label>
+                <input type="url" id="youtube_url" name="youtube_url" required placeholder="https://www.youtube.com/watch?v=...">
+            </div>
+            <div class="form-field">
+                <label for="sermon_date">Date Preached</label>
+                <input type="date" id="sermon_date" name="sermon_date" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-weight:bold; cursor:pointer;">Publish Sermon Video</button>
+        </form>
+    </div>
+
+    <!-- ===================== FORM 3: UPLOAD MEDIA ACTIVITY ===================== -->
+    <div class="admin-box">
+        <h2 style="margin-bottom: 6px; color: #fffcf5;">3. Upload Community Activities & Media</h2>
+        <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Uploads full images or video files straight into your storage directories.</p>
+
+        <form action="save-activity.php" method="POST" enctype="multipart/form-data">
+            <div class="form-field">
+                <label for="act_title">Activity / Event Title</label>
+                <input type="text" id="act_title" name="title" required placeholder="e.g., Youth Choir Rehearsal">
+            </div>
+            <div class="form-field">
+                <label for="act_desc">Description / Summary</label>
+                <textarea id="act_desc" name="description" required placeholder="Brief description of the activity..." style="height: 80px; resize: vertical;"></textarea>
+            </div>
+            <div class="form-field">
+                <label for="act_media">Select File (Image or Video)</label>
+                <input type="file" id="act_media" name="media_file" accept="image/*,video/*" required style="border: none; background: transparent; padding-left: 0;">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; background: #007bff; border-color: #007bff; color:white; font-weight:bold; cursor:pointer;">Upload Media Activity</button>
+        </form>
+    </div>
+
+    <!-- ===================== NEW FORM 4: UPLOAD DAILY BIBLE VERSES ===================== -->
+    <div class="admin-box">
+        <h2 style="margin-bottom: 6px; color: #fffcf5;">4. Publish Daily Bible Verse</h2>
+        <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Feeds straight into the sliding Bible verses sidebar on the About page.</p>
+
+        <form action="save-verse.php" method="POST">
+            <div class="form-field">
+                <label for="verse_text">Scripture Verse Text</label>
+                <textarea id="verse_text" name="verse_text" required placeholder="Type the scripture text here..." style="height: 100px; resize: vertical;"></textarea>
+            </div>
+            <div class="form-field">
+                <label for="reference">Book, Chapter & Verse Reference</label>
+                <input type="text" id="reference" name="reference" required placeholder="e.g., John 3:16 or Romans 8:28">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; background: #28a745; border-color: #28a745; color:white; font-weight:bold; cursor:pointer;">Publish Scripture Live</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

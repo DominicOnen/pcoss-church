@@ -6,9 +6,9 @@
 <title>Sermons — Presbyterian Church of South Sudan</title>
 <meta name="description" content="Browse past sermons from the Presbyterian Church of South Sudan.">
 <link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
 
 <style>
-
 /* ===================== SLIDING BIBLE SIDEBAR SYSTEM ===================== */
 .sidebar-trigger {
     position: fixed;
@@ -174,8 +174,6 @@
     font-weight: bold;
 }
 
-<!--handling the logo CSS--> 
-
 .brand {
     display: flex;
     align-items: center;
@@ -186,16 +184,11 @@
     height: 46px;
     flex-shrink: 0;
 }
-
-
 </style>
-
 </head>
 <body>
 
-
-
-  <!-- SIDEBAR TRIGGER BUTTON -->
+<!-- SIDEBAR TRIGGER BUTTON -->
 <button class="sidebar-trigger" id="openSidebarBtn">📖 Daily Verses</button>
 
 <!-- SLIDING VERSES SIDEBAR -->
@@ -218,68 +211,58 @@
     </div>
 </div>
 
-
-
-
 <header class="site-header">
   <nav class="nav">
-
-   <a href="index.html" class="brand">
-  <svg class="brand-mark-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Presbyterian Church of South Sudan Logo">
-    <polygon points="100,5 195,100 100,195 5,100" fill="#ffffff" stroke="#2e7d32" stroke-width="4"/>
-    <polygon points="100,45 155,100 100,155 45,100" fill="#ffffff" stroke="#2e7d32" stroke-width="3"/>
-    <text x="50" y="55" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 50 55)">PRESBYTERIAN</text>
-    <text x="130" y="40" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 130 40)">CHURCH</text>
-    <text x="45" y="150" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 45 150)">OF SOUTH</text>
-    <text x="140" y="140" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 140 140)">SUDAN</text>
-    <path d="M100 52 V145 M78 82 H122" stroke="#d32f2f" stroke-width="12" stroke-linecap="square"/>
-    <text x="73" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">MY WORDS</text>
-    <text x="71" y="88" fill="#1565c0" font-size="4.5" font-weight="bold" font-family="sans-serif">WILL NEVER</text>
-    <text x="104" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">PASS AWAY</text>
-    <path d="M72 110 Q100 104 100 115 Q100 104 128 110 L128 126 Q100 120 100 128 Q100 120 72 126 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
-    <line x1="100" y1="115" x2="100" y2="128" stroke="#000000" stroke-width="1.5"/>
-    <line x1="77" y1="114" x2="95" y2="112" stroke="#000000" stroke-width="1"/>
-    <line x1="77" y1="118" x2="95" y2="116" stroke="#000000" stroke-width="1"/>
-    <line x1="77" y1="122" x2="95" y2="120" stroke="#000000" stroke-width="1"/>
-    <line x1="105" y1="112" x2="123" y2="114" stroke="#000000" stroke-width="1"/>
-    <line x1="105" y1="116" x2="123" y2="118" stroke="#000000" stroke-width="1"/>
-    <line x1="105" y1="120" x2="123" y2="122" stroke="#000000" stroke-width="1"/>
-  </svg>
-  PCOSS
-  <span>Equatoria Presbytery | Juba Parish</span>
-</a>
-    
+    <a href="index.html" class="brand">
+      <svg class="brand-mark-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Presbyterian Church of South Sudan Logo">
+        <polygon points="100,5 195,100 100,195 5,100" fill="#ffffff" stroke="#2e7d32" stroke-width="4"/>
+        <polygon points="100,45 155,100 100,155 45,100" fill="#ffffff" stroke="#2e7d32" stroke-width="3"/>
+        <text x="50" y="55" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 50 55)">PRESBYTERIAN</text>
+        <text x="130" y="40" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 130 40)">CHURCH</text>
+        <text x="45" y="150" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 45 150)">OF SOUTH</text>
+        <text x="140" y="140" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 140 140)">SUDAN</text>
+        <path d="M100 52 V145 M78 82 H122" stroke="#d32f2f" stroke-width="12" stroke-linecap="square"/>
+        <text x="73" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">MY WORDS</text>
+        <text x="71" y="88" fill="#1565c0" font-size="4.5" font-weight="bold" font-family="sans-serif">WILL NEVER</text>
+        <text x="104" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">PASS AWAY</text>
+        <path d="M72 110 Q100 104 100 115 Q100 104 128 110 L128 126 Q100 120 100 128 Q100 120 72 126 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+        <line x1="100" y1="115" x2="100" y2="128" stroke="#000000" stroke-width="1.5"/>
+        <line x1="77" y1="114" x2="95" y2="112" stroke="#000000" stroke-width="1"/>
+        <line x1="77" y1="118" x2="95" y2="116" stroke="#000000" stroke-width="1"/>
+        <line x1="77" y1="122" x2="95" y2="120" stroke="#000000" stroke-width="1"/>
+        <line x1="105" y1="112" x2="123" y2="114" stroke="#000000" stroke-width="1"/>
+        <line x1="105" y1="116" x2="123" y2="118" stroke="#000000" stroke-width="1"/>
+        <line x1="105" y1="120" x2="123" y2="122" stroke="#000000" stroke-width="1"/>
+      </svg>
+      PCOSS
+      <span>Equatoria Presbytery | Juba Parish</span>
+    </a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">&#9776;</label>
-          <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="live.html">Live Stream</a></li>
-        <li><a href="sermons.html">Sermons</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="events.html">Updates</a></li>
-        
-        <!-- Move Gallery HERE (Active class applies ONLY when viewing gallery.php) -->
-        <li><a href="gallery.php">Gallery</a></li>
-        
-        <!-- Keep Contact as the absolute last item -->
-        <li><a href="contact.html" class="nav-cta">Contact</a></li>
-      </ul>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="live.html">Live Stream</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Updates</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
   </nav>
 </header>
 
 <section class="page-hero">
   <div class="container">
-    <p class="eyebrow" style="color:#e3b95c;">Watch &amp; Listen</p>
+    <p class="eyebrow" style="color:#e3b95c;">Spiritual Growth</p>
     <h1>Sermon Archive</h1>
-    <p>Recordings of past Sunday services and Bible studies, so you can revisit a message or catch up on one you missed.</p>
+    <p>Listen to recent proclamations of God's Word from our pastoral leadership.</p>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <!-- The JavaScript below will inject the database cards right here -->
-    <div class="grid grid-3" id="sermon-grid">
-      <p style="grid-column: 1 / -1; text-align: center; color: var(--ink-soft); padding: 40px 0;">Loading sermons...</p>
+    <div class="grid grid-3" id="sermons-container">
+      <p style="color: #b3b3b3;">Loading sermons archive...</p>
     </div>
   </div>
 </section>
@@ -329,33 +312,44 @@
   </div>
 </footer>
 
-<!-- Automatically pull from database and display cards dynamically -->
+<!-- SERMONS FETCHING SCRIPT -->
 <script>
-  fetch('fetch-sermons.php')
+  function getYouTubeEmbedUrl(url) {
+    if (!url) return '';
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : url;
+  }
+
+  fetch(`${API_BASE_URL}/api/sermons`)
     .then(response => response.json())
     .then(data => {
-      const grid = document.getElementById('sermon-grid');
-      grid.innerHTML = ''; // Clear out loading text
+      const container = document.getElementById('sermons-container');
+      container.innerHTML = '';
 
-      if(data.error || data.length === 0) {
-        grid.innerHTML = `<p style="grid-column: 1 / -1; text-align: center; color: var(--ink-soft); padding: 40px 0;">No sermons found in the archive.</p>`;
+      if (!data || data.length === 0) {
+        container.innerHTML = '<p style="color: #b3b3b3;">No sermons posted yet.</p>';
         return;
       }
 
       data.forEach(sermon => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <span class="date-badge">${sermon.formatted_date}</span>
-          <h3>${sermon.title}</h3>
-          <p>${sermon.preacher} &middot; ${sermon.scripture}</p>
-          <a href="${sermon.youtube_url}" target="_blank" class="card-link">Watch recording &rarr;</a>
+        const embedUrl = getYouTubeEmbedUrl(sermon.youtube_url);
+        container.innerHTML += `
+          <div class="card">
+            <div class="video-frame" style="margin-bottom: 15px;">
+              <iframe src="${embedUrl}" title="${sermon.title}" allowfullscreen></iframe>
+            </div>
+            <span class="date-badge">${sermon.sermon_date || 'Archive'}</span>
+            <h3>${sermon.title}</h3>
+            <p><strong>Preacher:</strong> ${sermon.preacher}</p>
+            ${sermon.scripture ? `<p><strong>Scripture:</strong> ${sermon.scripture}</p>` : ''}
+          </div>
         `;
-        grid.appendChild(card);
       });
     })
-    .catch(err => {
-      document.getElementById('sermon-grid').innerHTML = `<p style="grid-column: 1 / -1; text-align: center; color: #e26350; padding: 40px 0;">Failed to load sermons.</p>`;
+    .catch(error => {
+      console.error('Error fetching sermons:', error);
+      document.getElementById('sermons-container').innerHTML = '<p style="color: #ff4d4d;">Unable to load sermons archive.</p>';
     });
 </script>
 
@@ -375,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
     openSidebarBtn.addEventListener('click', () => sidebar.classList.add('open'));
     closeSidebarBtn.addEventListener('click', () => sidebar.classList.remove('open'));
 
-    fetch('fetch_verses.php')
+    fetch(`${API_BASE_URL}/api/verses`)
         .then(response => response.json())
         .then(data => {
             if (data.error || data.length === 0) {

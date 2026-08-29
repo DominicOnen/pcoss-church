@@ -6,6 +6,7 @@
 <title>Presbyterian Church of South Sudan (PCOSS) — Juba Parish</title>
 <meta name="description" content="Official home of the Presbyterian Church of South Sudan (PCOSS), Equatoria Presbytery, Juba Parish. Join us for Sunday English & Arabic worship at Hai Matar.">
 <link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
 <style>
 .brand {
     display: flex;
@@ -209,7 +210,7 @@
     </div>
 </div>
 
-<!-- ===================== HEADER / NAV ===================== -->
+<!-- HEADER / NAV -->
 <header class="site-header">
   <nav class="nav">
     <a href="index.html" class="brand">
@@ -246,13 +247,13 @@
       <li><a href="sermons.html">Sermons</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="events.html">Updates</a></li>
-      <li><a href="gallery.php">Gallery</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
       <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- ===================== HERO ===================== -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-grid">
     <div>
@@ -265,7 +266,7 @@
       </div>
     </div>
 
-    <!-- UPDATED SUNDAY & MIDWEEK SERVICE SCHEDULE CARD -->
+    <!-- SUNDAY & MIDWEEK SERVICE SCHEDULE CARD -->
     <div class="service-card">
       <p class="label">Hai Matar Services</p>
       <h3>Sunday Worship Schedule</h3>
@@ -287,7 +288,7 @@
 
 <div class="woven-divider" role="presentation"></div>
 
-<!-- ===================== LATEST UPDATES ===================== -->
+<!-- LATEST UPDATES -->
 <section class="section">
   <div class="container">
     <div class="section-head">
@@ -302,7 +303,7 @@
   </div>
 </section>
 
-<!-- ===================== LIVE STREAM TEASER ===================== -->
+<!-- LIVE STREAM TEASER -->
 <section class="section section-alt">
   <div class="container">
     <div class="grid grid-2" style="align-items:center; gap:48px;">
@@ -326,13 +327,13 @@
   </div>
 </section>
 
-<!-- ===================== VERSE BLOCK ===================== -->
+<!-- VERSE BLOCK -->
 <div class="verse-block">
   <blockquote>&ldquo;For where two or three gather in my name, there am I with them.&rdquo;</blockquote>
   <cite>Matthew 18:20</cite>
 </div>
 
-<!-- ===================== MINISTRIES & REHEARSAL SCHEDULE ===================== -->
+<!-- MINISTRIES & REHEARSAL SCHEDULE -->
 <section class="section">
   <div class="container">
     <div class="section-head">
@@ -342,16 +343,15 @@
     </div>
 
     <div class="grid grid-3">
-      <!-- UPDATED CHOIR AND WORSHIP SCHEDULE CARD -->
       <div class="card">
         <div class="medallion"></div>
         <h3>Choir &amp; Worship Practice</h3>
         <ul style="list-style:none; padding:0; margin-top:8px; line-height:1.7; font-size:0.9rem;">
-          <td>• <strong>Mon:</strong> Music Training</td><br>
-          <td>• <strong>Tue:</strong> Arabic Choir Rehearsal</td><br>
-          <td>• <strong>Wed:</strong> Band Practice</td><br>
-          <td>• <strong>Fri:</strong> Arabic Final Sound Check</td><br>
-          <td>• <strong>Sat:</strong> English Final Sound Check</td>
+          <li>• <strong>Mon:</strong> Music Training</li>
+          <li>• <strong>Tue:</strong> Arabic Choir Rehearsal</li>
+          <li>• <strong>Wed:</strong> Band Practice</li>
+          <li>• <strong>Fri:</strong> Arabic Final Sound Check</li>
+          <li>• <strong>Sat:</strong> English Final Sound Check</li>
         </ul>
       </div>
       <div class="card">
@@ -383,7 +383,7 @@
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
@@ -429,39 +429,41 @@
   </div>
 </footer>
 
-<!-- BACKEND INJECTION SCRIPT -->
+<!-- BACKEND INJECTION & SIDEBAR SCRIPTS -->
 <script>
-  fetch('fetch_data.php?action=home_updates')
-    .then(response => response.json())
+  // Latest updates teaser: combine events + announcements, newest first, show top 3
+  fetch(`${API_BASE_URL}/api/updates`)
+    .then(response => {
+      if (!response.ok) throw new Error('Failed to fetch updates');
+      return response.json();
+    })
     .then(data => {
       const container = document.getElementById('home-updates-container');
-      container.innerHTML = ''; 
-      
-      if(!data || data.length === 0) {
-        container.innerHTML = '<p>No updates available at the moment.</p>';
-        return;
-      }
+      container.innerHTML = '';
+      const combined = [...(data.events || []), ...(data.announcements || [])]
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        .slice(0, 3);
 
-      data.forEach(item => {
-        container.innerHTML += `
-          <div class="card">
-            <span class="date-badge">${item.date_display}</span>
-            <h3>${item.title}</h3>
-            <p>${item.description}</p>
-            <a href="events.html" class="card-link">Read more &rarr;</a>
-          </div>
-        `;
-      });
+      if (combined.length === 0) {
+        container.innerHTML = '<p>No recent announcements or events posted.</p>';
+      } else {
+        combined.forEach(item => {
+          container.innerHTML += `
+            <div class="card">
+              <span class="date-badge">${item.date_display || ''}</span>
+              <h3>${item.title}</h3>
+              <p>${item.description}</p>
+            </div>
+          `;
+        });
+      }
     })
     .catch(error => {
-      console.error('Error loading updates:', error);
-      document.getElementById('home-updates-container').innerHTML = '<p>Unable to load updates at this time.</p>';
+      console.error('Error fetching home updates:', error);
+      document.getElementById('home-updates-container').innerHTML = '<p>Unable to load updates.</p>';
     });
-</script>
 
-<!-- SIDEBAR ENGINE CONTROLLER -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('verseSidebar');
     const openSidebarBtn = document.getElementById('openSidebarBtn');
     const closeSidebarBtn = document.getElementById('closeSidebarBtn');
@@ -475,10 +477,14 @@ document.addEventListener('DOMContentLoaded', function() {
     openSidebarBtn.addEventListener('click', () => sidebar.classList.add('open'));
     closeSidebarBtn.addEventListener('click', () => sidebar.classList.remove('open'));
 
-    fetch('fetch_verses.php')
-        .then(response => response.json())
+    // Daily verses
+    fetch(`${API_BASE_URL}/api/verses`)
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to fetch verses');
+            return response.json();
+        })
         .then(data => {
-            if (data.error || data.length === 0) {
+            if (!data || data.length === 0) {
                 scrollContainer.innerHTML = '<p style="color: #b3b3b3; text-align: center; padding-top: 20px;">No verses uploaded yet.</p>';
                 return;
             }
@@ -504,6 +510,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         })
         .catch(error => {
+            console.error('Error fetching verses:', error);
             scrollContainer.innerHTML = '<p style="color: #ff4d4d; text-align: center; padding-top: 20px;">Unable to load scriptures.</p>';
         });
 
@@ -511,7 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
     modal.addEventListener('click', (e) => { 
         if (e.target === modal) modal.classList.remove('active'); 
     });
-});
+  });
 </script>
 
 </body>

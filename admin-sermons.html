@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Panel — PCSS Control Portal</title>
 <link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
 <style>
-    /* Clean layout formatting matching your church site styling[cite: 4] */
     .admin-box { 
       max-width: 550px; 
       margin: 40px auto; 
@@ -39,6 +39,43 @@
       border-color: #c69a3b;
       outline: none;
     }
+    .status-msg {
+      margin-bottom: 14px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      min-height: 1.2em;
+    }
+    #loginGate {
+      max-width: 420px;
+      margin: 80px auto;
+      padding: 32px;
+      background: #1a1a1a;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fffcf5;
+      text-align: center;
+    }
+    #loginGate input {
+      width: 100%;
+      padding: 12px;
+      background: #262626;
+      border: 1px solid #444;
+      border-radius: 4px;
+      color: #fff;
+      box-sizing: border-box;
+      margin: 16px 0;
+    }
+    #adminLogoutBtn {
+      display: block;
+      margin: 0 auto 20px auto;
+      background: none;
+      border: 1px solid #444;
+      color: #b3b3b3;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #adminLogoutBtn:hover { color: #fffcf5; border-color: #c69a3b; }
 </style>
 </head>
 <body>
@@ -51,18 +88,29 @@
   </div>
 </section>
 
-<div class="container">
+<!-- LOGIN GATE -->
+<div id="loginGate">
+  <h2 style="margin-top:0; color:#fffcf5;">Admin Access</h2>
+  <p style="color:#aaa; font-size:0.9rem;">Enter the admin key to manage church content.</p>
+  <div id="loginStatus" class="status-msg" style="color:#ff4d4d;"></div>
+  <input type="password" id="adminKeyInput" placeholder="Admin key">
+  <button id="adminLoginBtn" class="btn btn-primary" style="width:100%; justify-content:center; cursor:pointer;">Unlock</button>
+</div>
 
-    <!-- ===================== FORM 1: PUBLISH EVENTS & ANNOUNCEMENTS ===================== -->
+<div class="container" id="adminContent" style="display:none;">
+  <button id="adminLogoutBtn">Log out</button>
+
+    <!-- FORM 1: PUBLISH EVENTS & ANNOUNCEMENTS -->
     <div class="admin-box">
-        <h2 style="margin-bottom: 6px; color: #fffcf5;">1. Church News & Upcoming Events</h2>
+        <h2 style="margin-bottom: 6px; color: #fffcf5;">1. Church News &amp; Upcoming Events</h2>
         <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Updates feed straight to the Home (index) and Updates (events) pages.</p>
 
-        <form action="save-update.php" method="POST">
+        <form id="updateForm">
+            <div id="updateStatus" class="status-msg"></div>
             <div class="form-field">
                 <label for="type">Post Type Location</label>
                 <select id="type" name="type" required>
-                    <option value="announcement">Church News / Announcement (Shows on Home & Updates)</option>
+                    <option value="announcement">Church News / Announcement (Shows on Home &amp; Updates)</option>
                     <option value="event">Upcoming Event (Shows on Updates Page Grid)</option>
                 </select>
             </div>
@@ -87,12 +135,13 @@
         </form>
     </div>
 
-    <!-- ===================== FORM 2: UPLOAD SERMON ===================== -->
+    <!-- FORM 2: UPLOAD SERMON -->
     <div class="admin-box">
         <h2 style="margin-bottom: 6px; color: #fffcf5;">2. Publish New Sermon Archive</h2>
         <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Saves video links and records into the sermons directory.</p>
 
-        <form action="save-sermon.php" method="POST">
+        <form id="sermonForm">
+            <div id="sermonStatus" class="status-msg"></div>
             <div class="form-field">
                 <label for="title">Sermon Title</label>
                 <input type="text" id="title" name="title" required placeholder="e.g., Walking in the Spirit">
@@ -117,12 +166,13 @@
         </form>
     </div>
 
-    <!-- ===================== FORM 3: UPLOAD MEDIA ACTIVITY ===================== -->
+    <!-- FORM 3: UPLOAD MEDIA ACTIVITY -->
     <div class="admin-box">
-        <h2 style="margin-bottom: 6px; color: #fffcf5;">3. Upload Community Activities & Media</h2>
+        <h2 style="margin-bottom: 6px; color: #fffcf5;">3. Upload Community Activities &amp; Media</h2>
         <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Uploads full images or video files straight into your storage directories.</p>
 
-        <form action="save-activity.php" method="POST" enctype="multipart/form-data">
+        <form id="activityForm">
+            <div id="activityStatus" class="status-msg"></div>
             <div class="form-field">
                 <label for="act_title">Activity / Event Title</label>
                 <input type="text" id="act_title" name="title" required placeholder="e.g., Youth Choir Rehearsal">
@@ -139,18 +189,19 @@
         </form>
     </div>
 
-    <!-- ===================== NEW FORM 4: UPLOAD DAILY BIBLE VERSES ===================== -->
+    <!-- FORM 4: UPLOAD DAILY BIBLE VERSES -->
     <div class="admin-box">
         <h2 style="margin-bottom: 6px; color: #fffcf5;">4. Publish Daily Bible Verse</h2>
         <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Feeds straight into the sliding Bible verses sidebar on the About page.</p>
 
-        <form action="save-verse.php" method="POST">
+        <form id="verseForm">
+            <div id="verseStatus" class="status-msg"></div>
             <div class="form-field">
                 <label for="verse_text">Scripture Verse Text</label>
                 <textarea id="verse_text" name="verse_text" required placeholder="Type the scripture text here..." style="height: 100px; resize: vertical;"></textarea>
             </div>
             <div class="form-field">
-                <label for="reference">Book, Chapter & Verse Reference</label>
+                <label for="reference">Book, Chapter &amp; Verse Reference</label>
                 <input type="text" id="reference" name="reference" required placeholder="e.g., John 3:16 or Romans 8:28">
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; background: #28a745; border-color: #28a745; color:white; font-weight:bold; cursor:pointer;">Publish Scripture Live</button>
@@ -158,6 +209,204 @@
     </div>
 
 </div>
+
+<script>
+const ADMIN_KEY_STORAGE = 'pcoss_admin_key';
+const loginGate = document.getElementById('loginGate');
+const adminContent = document.getElementById('adminContent');
+const loginStatus = document.getElementById('loginStatus');
+
+function showAdminContent() {
+  loginGate.style.display = 'none';
+  adminContent.style.display = 'block';
+}
+function showLoginGate(message) {
+  adminContent.style.display = 'none';
+  loginGate.style.display = 'block';
+  loginStatus.textContent = message || '';
+}
+function getAdminKey() {
+  return sessionStorage.getItem(ADMIN_KEY_STORAGE) || '';
+}
+
+// Show the dashboard immediately if a key is already stored this session.
+// (The key itself is only actually validated the first time you submit a
+// form — a wrong key will bounce you back to this screen with a 401.)
+if (getAdminKey()) {
+  showAdminContent();
+}
+
+document.getElementById('adminLoginBtn').addEventListener('click', function() {
+  const key = document.getElementById('adminKeyInput').value.trim();
+  if (!key) {
+    loginStatus.textContent = 'Please enter the admin key.';
+    return;
+  }
+  sessionStorage.setItem(ADMIN_KEY_STORAGE, key);
+  showAdminContent();
+});
+document.getElementById('adminKeyInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') document.getElementById('adminLoginBtn').click();
+});
+document.getElementById('adminLogoutBtn').addEventListener('click', function() {
+  sessionStorage.removeItem(ADMIN_KEY_STORAGE);
+  showLoginGate();
+});
+
+// Shared helper: handles the 401 "wrong key" case consistently everywhere.
+function handleAuthError(res, statusDiv) {
+  if (res.status === 401) {
+    statusDiv.style.color = '#ff4d4d';
+    statusDiv.textContent = 'Incorrect admin key — please log in again.';
+    sessionStorage.removeItem(ADMIN_KEY_STORAGE);
+    setTimeout(() => showLoginGate('Session expired — enter the admin key again.'), 1200);
+    return true;
+  }
+  return false;
+}
+
+// --- FORM 1: Church news / events ---
+document.getElementById('updateForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const statusDiv = document.getElementById('updateStatus');
+  statusDiv.style.color = '#c69a3b';
+  statusDiv.textContent = 'Publishing...';
+
+  const payload = {
+    type: document.getElementById('type').value,
+    title: document.getElementById('update_title').value,
+    date_display: document.getElementById('date_display').value,
+    event_date: document.getElementById('event_date').value || null,
+    description: document.getElementById('description').value
+  };
+
+  fetch(`${API_BASE_URL}/api/updates`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Admin-Key': getAdminKey() },
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if (handleAuthError(res, statusDiv)) return null;
+    if (!res.ok) throw new Error('Failed to publish');
+    return res.json();
+  })
+  .then(data => {
+    if (!data) return;
+    statusDiv.style.color = '#4caf50';
+    statusDiv.textContent = 'Published! It will now show on the site.';
+    document.getElementById('updateForm').reset();
+  })
+  .catch(() => {
+    statusDiv.style.color = '#ff4d4d';
+    statusDiv.textContent = 'Something went wrong. Please try again.';
+  });
+});
+
+// --- FORM 2: Sermons ---
+document.getElementById('sermonForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const statusDiv = document.getElementById('sermonStatus');
+  statusDiv.style.color = '#c69a3b';
+  statusDiv.textContent = 'Publishing...';
+
+  const payload = {
+    title: document.getElementById('title').value,
+    preacher: document.getElementById('preacher').value,
+    scripture: document.getElementById('scripture').value || null,
+    youtube_url: document.getElementById('youtube_url').value,
+    sermon_date: document.getElementById('sermon_date').value
+  };
+
+  fetch(`${API_BASE_URL}/api/sermons`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Admin-Key': getAdminKey() },
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if (handleAuthError(res, statusDiv)) return null;
+    if (!res.ok) throw new Error('Failed to publish');
+    return res.json();
+  })
+  .then(data => {
+    if (!data) return;
+    statusDiv.style.color = '#4caf50';
+    statusDiv.textContent = 'Sermon published!';
+    document.getElementById('sermonForm').reset();
+  })
+  .catch(() => {
+    statusDiv.style.color = '#ff4d4d';
+    statusDiv.textContent = 'Something went wrong. Please try again.';
+  });
+});
+
+// --- FORM 3: Gallery upload (multipart — image or video file) ---
+document.getElementById('activityForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const statusDiv = document.getElementById('activityStatus');
+  statusDiv.style.color = '#c69a3b';
+  statusDiv.textContent = 'Uploading... this can take a moment for video files.';
+
+  const formData = new FormData();
+  formData.append('title', document.getElementById('act_title').value);
+  formData.append('description', document.getElementById('act_desc').value);
+  formData.append('media_file', document.getElementById('act_media').files[0]);
+
+  fetch(`${API_BASE_URL}/api/gallery`, {
+    method: 'POST',
+    headers: { 'X-Admin-Key': getAdminKey() }, // no Content-Type — browser sets the multipart boundary
+    body: formData
+  })
+  .then(res => {
+    if (handleAuthError(res, statusDiv)) return null;
+    if (!res.ok) throw new Error('Failed to upload');
+    return res.json();
+  })
+  .then(data => {
+    if (!data) return;
+    statusDiv.style.color = '#4caf50';
+    statusDiv.textContent = 'Uploaded to the gallery!';
+    document.getElementById('activityForm').reset();
+  })
+  .catch(() => {
+    statusDiv.style.color = '#ff4d4d';
+    statusDiv.textContent = 'Upload failed. Please try again.';
+  });
+});
+
+// --- FORM 4: Daily verses ---
+document.getElementById('verseForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const statusDiv = document.getElementById('verseStatus');
+  statusDiv.style.color = '#c69a3b';
+  statusDiv.textContent = 'Publishing...';
+
+  const payload = {
+    verse: document.getElementById('verse_text').value,
+    reference: document.getElementById('reference').value
+  };
+
+  fetch(`${API_BASE_URL}/api/verses`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Admin-Key': getAdminKey() },
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if (handleAuthError(res, statusDiv)) return null;
+    if (!res.ok) throw new Error('Failed to publish');
+    return res.json();
+  })
+  .then(data => {
+    if (!data) return;
+    statusDiv.style.color = '#4caf50';
+    statusDiv.textContent = 'Verse published!';
+    document.getElementById('verseForm').reset();
+  })
+  .catch(() => {
+    statusDiv.style.color = '#ff4d4d';
+    statusDiv.textContent = 'Something went wrong. Please try again.';
+  });
+});
+</script>
 
 </body>
 </html>

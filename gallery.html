@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Updates &amp; Events — Presbyterian Church of South Sudan</title>
-<meta name="description" content="Announcements and upcoming events at the Presbyterian Church of South Sudan.">
+<title>Gallery — Presbyterian Church of South Sudan</title>
+<meta name="description" content="Media gallery of the Presbyterian Church of South Sudan.">
 <link rel="stylesheet" href="styles.css">
 <script src="config.js"></script>
+
 <style>
 /* ===================== SLIDING BIBLE SIDEBAR SYSTEM ===================== */
 .sidebar-trigger {
@@ -27,9 +28,7 @@
     box-shadow: -2px 0 10px rgba(0,0,0,0.3);
     transition: background 0.2s;
 }
-.sidebar-trigger:hover { 
-    background: #fffcf5; 
-}
+.sidebar-trigger:hover { background: #fffcf5; }
 
 .verse-sidebar {
     position: fixed;
@@ -47,9 +46,7 @@
     padding: 25px;
     box-sizing: border-box;
 }
-.verse-sidebar.open { 
-    right: 0; 
-}
+.verse-sidebar.open { right: 0; }
 
 .sidebar-header {
     display: flex;
@@ -60,20 +57,9 @@
     margin-bottom: 20px;
     flex-shrink: 0;
 }
-.sidebar-header h2 { 
-    color: #fffcf5; 
-    font-size: 1.2rem; 
-    margin: 0; 
-}
-.sidebar-close { 
-    color: #b3b3b3; 
-    font-size: 24px; 
-    cursor: pointer; 
-    user-select: none; 
-}
-.sidebar-close:hover { 
-    color: #c69a3b; 
-}
+.sidebar-header h2 { color: #fffcf5; font-size: 1.2rem; margin: 0; }
+.sidebar-close { color: #b3b3b3; font-size: 24px; cursor: pointer; user-select: none; }
+.sidebar-close:hover { color: #c69a3b; }
 
 .verse-scroll-container { 
     flex: 1 1 auto; 
@@ -81,16 +67,9 @@
     max-height: calc(100vh - 100px); 
     padding-right: 8px; 
 }
-.verse-scroll-container::-webkit-scrollbar { 
-    width: 6px; 
-}
-.verse-scroll-container::-webkit-scrollbar-thumb { 
-    background: #333; 
-    border-radius: 3px; 
-}
-.verse-scroll-container::-webkit-scrollbar-thumb:hover { 
-    background: #c69a3b; 
-}
+.verse-scroll-container::-webkit-scrollbar { width: 6px; }
+.verse-scroll-container::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+.verse-scroll-container::-webkit-scrollbar-thumb:hover { background: #c69a3b; }
 
 .sidebar-verse-card { 
     background: #222; 
@@ -121,11 +100,9 @@
     padding: 0; 
     text-decoration: underline; 
 }
-.expand-verse-btn:hover { 
-    color: #fffcf5; 
-}
+.expand-verse-btn:hover { color: #fffcf5; }
 
-.verse-modal { 
+.verse-modal, .media-modal { 
     display: none; 
     position: fixed; 
     left: 0; 
@@ -137,9 +114,8 @@
     align-items: center; 
     justify-content: center; 
 }
-.verse-modal.active { 
-    display: flex; 
-}
+.verse-modal.active, .media-modal.active { display: flex; }
+
 .verse-modal-content { 
     background: #161616; 
     border: 1px solid #c69a3b; 
@@ -153,44 +129,31 @@
     max-height: 85vh;
     overflow-y: auto;
 }
-.verse-modal-content::-webkit-scrollbar {
-    width: 6px;
+.verse-modal-content blockquote { font-size: 1.15rem; color: #fffcf5; line-height: 1.6; margin: 10px 0 15px 0; font-style: italic; }
+.verse-modal-content cite { font-size: 0.95rem; color: #c69a3b; font-weight: bold; }
+
+.media-modal-content {
+    position: relative;
+    max-width: 800px;
+    width: 90%;
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 20px;
 }
-.verse-modal-content::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 3px;
-}
-.verse-modal-content blockquote { 
-    font-size: 1.15rem; 
-    color: #fffcf5; 
-    line-height: 1.6; 
-    margin: 10px 0 15px 0; 
-    font-style: italic;
-}
-.verse-modal-content cite { 
-    font-size: 0.95rem; 
-    color: #c69a3b; 
-    font-weight: bold;
+.media-modal-content img, .media-modal-content iframe {
+    width: 100%;
+    border-radius: 4px;
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.brand-mark-svg {
-    width: 46px;
-    height: 46px;
-    flex-shrink: 0;
-}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark-svg { width: 46px; height: 46px; flex-shrink: 0; }
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR TRIGGER BUTTON -->
 <button class="sidebar-trigger" id="openSidebarBtn">📖 Daily Verses</button>
 
-<!-- SLIDING VERSES SIDEBAR -->
 <div class="verse-sidebar" id="verseSidebar">
     <div class="sidebar-header">
         <h2>Daily Bread Archive</h2>
@@ -201,12 +164,18 @@
     </div>
 </div>
 
-<!-- SIDEBAR EXPAND VIEW LIGHTBOX MODAL -->
 <div class="verse-modal" id="verseModal">
     <div class="verse-modal-content">
         <span class="sidebar-close" id="closeModalBtn" style="position: absolute; top: 15px; right: 20px;">&times;</span>
         <blockquote id="modalVerseText"></blockquote>
         <cite id="modalVerseReference"></cite>
+    </div>
+</div>
+
+<div class="media-modal" id="mediaModal">
+    <div class="media-modal-content">
+        <span class="sidebar-close" id="closeMediaModalBtn" style="position: absolute; top: -35px; right: 0; color: #fff;">&times;</span>
+        <div id="mediaModalContainer"></div>
     </div>
 </div>
 
@@ -236,7 +205,6 @@
       PCOSS
       <span>Equatoria Presbytery | Juba Parish</span>
     </a>
-
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">&#9776;</label>
     <ul class="nav-links">
@@ -253,40 +221,16 @@
 
 <section class="page-hero">
   <div class="container">
-    <p class="eyebrow" style="color:#e3b95c;">Stay Connected</p>
-    <h1>Updates &amp; Events</h1>
-    <p>Announcements, upcoming gatherings, and everything happening across our church family.</p>
+    <p class="eyebrow" style="color:#e3b95c;">Community Life</p>
+    <h1>Media Gallery</h1>
+    <p>Moments from our worship services, events, and ministry activities.</p>
   </div>
 </section>
 
-<!-- ===================== UPCOMING EVENTS ===================== -->
 <section class="section">
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Upcoming Events</p>
-      <h2>What's coming up</h2>
-    </div>
-
-    <!-- TARGET CONTAINER FOR EVENTS -->
-    <div class="grid grid-2" id="events-container">
-      <p>Loading upcoming events...</p>
-    </div>
-  </div>
-</section>
-
-<div class="woven-divider"></div>
-
-<!-- ===================== ANNOUNCEMENTS ===================== -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Announcements</p>
-      <h2>Church news</h2>
-    </div>
-
-    <!-- TARGET CONTAINER FOR ANNOUNCEMENTS -->
-    <div class="grid grid-3" id="announcements-container">
-      <p>Loading announcements...</p>
+    <div class="grid grid-3" id="galleryContainer">
+      <p style="color: #b3b3b3;">Loading gallery...</p>
     </div>
   </div>
 </section>
@@ -297,11 +241,6 @@
       <div>
         <h4>Presbyterian Church of South Sudan</h4>
         <p>A Reformed congregation gathered around the Word of God, serving South Sudanese believers at home and abroad.</p>
-        <div class="social-row">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="YouTube">▶</a>
-          <a href="#" aria-label="Instagram">◎</a>
-        </div>
       </div>
       <div>
         <h4>Quick Links</h4>
@@ -331,66 +270,79 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 Presbyterian Church of South Sudan. All rights reserved.</p>
-      <p>Built with care for the glory of God.</p>
     </div>
   </div>
 </footer>
 
-<!-- BACKEND INJECTION SCRIPT -->
 <script>
-  fetch(`${API_BASE_URL}/api/updates`)
-    .then(response => response.json())
-    .then(data => {
-      // 1. Render Upcoming Events
-      const eventsContainer = document.getElementById('events-container');
-      eventsContainer.innerHTML = '';
-      if(!data.events || data.events.length === 0) {
-        eventsContainer.innerHTML = '<p>No upcoming events at this time.</p>';
+// Gallery items are now uploaded files (image or video) stored on Cloudflare
+// R2, not YouTube links — so both types render as native <img>/<video> tags.
+fetch(`${API_BASE_URL}/api/gallery`)
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('galleryContainer');
+    container.innerHTML = '';
+    if (!data || data.length === 0) {
+      container.innerHTML = '<p style="color: #b3b3b3;">No gallery items published yet.</p>';
+      return;
+    }
+
+    data.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      let mediaPreview = '';
+      if (item.media_type === 'video') {
+        mediaPreview = `<video src="${item.file_url}" style="width:100%; height:200px; object-fit:cover; cursor:pointer;" muted loop playsinline onclick="openMediaModal('${item.file_url}', 'video')"></video>`;
       } else {
-        data.events.forEach(item => {
-          eventsContainer.innerHTML += `
-            <div class="card">
-              <span class="date-badge">${item.date_display}</span>
-              <h3>${item.title}</h3>
-              <p>${item.description}</p>
-              <a href="contact.html" class="card-link">Register interest &rarr;</a>
-            </div>
-          `;
-        });
+        mediaPreview = `<img src="${item.file_url}" alt="${item.title}" style="width:100%; height:200px; object-fit:cover; cursor:pointer;" onclick="openMediaModal('${item.file_url}', 'image')">`;
       }
 
-      // 2. Render Announcements
-      const newsContainer = document.getElementById('announcements-container');
-      newsContainer.innerHTML = '';
-      if(!data.announcements || data.announcements.length === 0) {
-        newsContainer.innerHTML = '<p>No recent announcements.</p>';
-      } else {
-        data.announcements.forEach(item => {
-          newsContainer.innerHTML += `
-            <div class="card">
-              <span class="date-badge">${item.date_display}</span>
-              <h3>${item.title}</h3>
-              <p>${item.description}</p>
-            </div>
-          `;
-        });
-      }
-    })
-    .catch(error => {
-      console.error('Error loading data:', error);
-      document.getElementById('events-container').innerHTML = '<p>Unable to load events.</p>';
-      document.getElementById('announcements-container').innerHTML = '<p>Unable to load announcements.</p>';
+      card.innerHTML = `
+        ${mediaPreview}
+        <h3 style="margin-top: 15px;">${item.title}</h3>
+        <p>${item.description || ''}</p>
+      `;
+      container.appendChild(card);
     });
-</script>
+  })
+  .catch(err => {
+    console.error(err);
+    document.getElementById('galleryContainer').innerHTML = '<p style="color: #ff4d4d;">Unable to load gallery.</p>';
+  });
 
-<!-- SIDEBAR ENGINE CONTROLLER -->
-<script>
+// Media Lightbox Modal logic
+const mediaModal = document.getElementById('mediaModal');
+const mediaContainer = document.getElementById('mediaModalContainer');
+document.getElementById('closeMediaModalBtn').addEventListener('click', () => closeMediaModal());
+
+function openMediaModal(url, type) {
+  if (type === 'video') {
+    mediaContainer.innerHTML = `<video src="${url}" style="max-height:80vh; width:100%; display:block;" controls autoplay></video>`;
+  } else {
+    mediaContainer.innerHTML = `<img src="${url}" style="max-height:80vh; width:auto; margin:0 auto; display:block;">`;
+  }
+  mediaModal.classList.add('active');
+}
+
+function closeMediaModal() {
+  mediaModal.classList.remove('active');
+  mediaContainer.innerHTML = ''; // stops any playing video
+}
+
+mediaModal.addEventListener('click', (e) => {
+  if (e.target === mediaModal) closeMediaModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && mediaModal.classList.contains('active')) closeMediaModal();
+});
+
+// Daily Bible Sidebar Script
 document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('verseSidebar');
     const openSidebarBtn = document.getElementById('openSidebarBtn');
     const closeSidebarBtn = document.getElementById('closeSidebarBtn');
     const scrollContainer = document.getElementById('verseScrollContainer');
-    
     const modal = document.getElementById('verseModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const modalText = document.getElementById('modalVerseText');
@@ -406,9 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 scrollContainer.innerHTML = '<p style="color: #b3b3b3; text-align: center; padding-top: 20px;">No verses uploaded yet.</p>';
                 return;
             }
-            
             scrollContainer.innerHTML = '';
-            
             data.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'sidebar-verse-card';
@@ -417,13 +367,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     <cite>${item.reference}</cite>
                     <button class="expand-verse-btn">📖 Expand View</button>
                 `;
-                
                 card.querySelector('.expand-verse-btn').addEventListener('click', function() {
                     modalText.textContent = `“${item.verse}”`;
                     modalRef.textContent = item.reference;
                     modal.classList.add('active');
                 });
-                
                 scrollContainer.appendChild(card);
             });
         })
@@ -432,9 +380,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
     closeModalBtn.addEventListener('click', () => modal.classList.remove('active'));
-    modal.addEventListener('click', (e) => { 
-        if (e.target === modal) modal.classList.remove('active'); 
-    });
 });
 </script>
 

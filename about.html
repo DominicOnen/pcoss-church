@@ -6,10 +6,9 @@
 <title>About Us — Presbyterian Church of South Sudan (PCOSS)</title>
 <meta name="description" content="Learn about the history, structure, and ministry of PCOSS Equatoria Presbytery, Juba Parish at Hai Matar.">
 <link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
 
 <style>
-
-  
 /* ===================== SLIDING BIBLE SIDEBAR SYSTEM ===================== */
 .sidebar-trigger {
     position: fixed;
@@ -175,8 +174,7 @@
     font-weight: bold;
 }
 
-<!--handling the logo CSS--> 
-
+/* Handling the logo CSS */ 
 .brand {
     display: flex;
     align-items: center;
@@ -187,18 +185,12 @@
     height: 46px;
     flex-shrink: 0;
 }
-
-
-
-
 </style>
 </head>
 <body>
 
 <header class="site-header">
   <nav class="nav">
-
-    <!--handling the logo  here-->
     <a href="index.html" class="brand">
       <svg class="brand-mark-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Presbyterian Church of South Sudan Logo">
         <polygon points="100,5 195,100 100,195 5,100" fill="#ffffff" stroke="#2e7d32" stroke-width="4"/>
@@ -231,7 +223,7 @@
         <li><a href="sermons.html">Sermons</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="events.html">Updates</a></li>
-        <li><a href="gallery.php">Gallery</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
   </nav>
@@ -388,7 +380,6 @@
   </div>
 </footer>
 
-<!-- SIDEBAR CONTROLLER AND ASYNC DATA LOADER ENGINE -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('verseSidebar');
@@ -404,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
     openSidebarBtn.addEventListener('click', () => sidebar.classList.add('open'));
     closeSidebarBtn.addEventListener('click', () => sidebar.classList.remove('open'));
 
-    fetch('fetch_verses.php')
+    fetch(`${API_BASE_URL}/api/verses`)
         .then(response => response.json())
         .then(data => {
             if (data.error || data.length === 0) {

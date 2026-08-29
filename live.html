@@ -6,6 +6,7 @@
 <title>Live Stream — Presbyterian Church of South Sudan</title>
 <meta name="description" content="Watch the Presbyterian Church of South Sudan's Sunday service live online.">
 <link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
 
 
 <style>
@@ -253,10 +254,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="events.html">Updates</a></li>
           
-          <!-- Move Gallery HERE (Active class applies ONLY when viewing gallery.php) -->
-          <li><a href="gallery.php">Gallery</a></li>
-          
-          <!-- Keep Contact as the absolute last item -->
+          <li><a href="gallery.html">Gallery</a></li>
           <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
   </nav>
@@ -391,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
     openSidebarBtn.addEventListener('click', () => sidebar.classList.add('open'));
     closeSidebarBtn.addEventListener('click', () => sidebar.classList.remove('open'));
 
-    fetch('fetch_verses.php')
+    fetch(`${API_BASE_URL}/api/verses`)
         .then(response => response.json())
         .then(data => {
             if (data.error || data.length === 0) {

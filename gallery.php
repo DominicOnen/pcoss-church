@@ -107,7 +107,6 @@
         border-radius: 4px;
         box-shadow: 0 0 20px rgba(198, 154, 59, 0.2);
         
-        /* Opening transition */
         transform: scale(0.1);
         transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform-custom 0.3s ease; 
         display: none;
@@ -116,7 +115,6 @@
         transform: scale(1);
     }
     
-    /* Action Buttons top right layout styling */
     .modal-controls {
         position: absolute;
         top: 20px;
@@ -135,7 +133,7 @@
         cursor: pointer;
         font-weight: bold;
         font-size: 0.9rem;
-        display: none; /* Only show when video is running */
+        display: none;
         transition: background 0.2s;
     }
     .rotate-btn:hover {
@@ -166,19 +164,16 @@
         letter-spacing: 0.5px;
     }
 
-    <!--handling the logo CSS--> 
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.brand-mark-svg {
-    width: 46px;
-    height: 46px;
-    flex-shrink: 0;
-}
-
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .brand-mark-svg {
+        width: 46px;
+        height: 46px;
+        flex-shrink: 0;
+    }
 </style>
 </head>
 <body>
@@ -186,29 +181,29 @@
 <header class="site-header">
   <nav class="nav">
     <a href="index.html" class="brand">
-  <svg class="brand-mark-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Presbyterian Church of South Sudan Logo">
-    <polygon points="100,5 195,100 100,195 5,100" fill="#ffffff" stroke="#2e7d32" stroke-width="4"/>
-    <polygon points="100,45 155,100 100,155 45,100" fill="#ffffff" stroke="#2e7d32" stroke-width="3"/>
-    <text x="50" y="55" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 50 55)">PRESBYTERIAN</text>
-    <text x="130" y="40" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 130 40)">CHURCH</text>
-    <text x="45" y="150" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 45 150)">OF SOUTH</text>
-    <text x="140" y="140" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 140 140)">SUDAN</text>
-    <path d="M100 52 V145 M78 82 H122" stroke="#d32f2f" stroke-width="12" stroke-linecap="square"/>
-    <text x="73" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">MY WORDS</text>
-    <text x="71" y="88" fill="#1565c0" font-size="4.5" font-weight="bold" font-family="sans-serif">WILL NEVER</text>
-    <text x="104" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">PASS AWAY</text>
-    <path d="M72 110 Q100 104 100 115 Q100 104 128 110 L128 126 Q100 120 100 128 Q100 120 72 126 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
-    <line x1="100" y1="115" x2="100" y2="128" stroke="#000000" stroke-width="1.5"/>
-    <line x1="77" y1="114" x2="95" y2="112" stroke="#000000" stroke-width="1"/>
-    <line x1="77" y1="118" x2="95" y2="116" stroke="#000000" stroke-width="1"/>
-    <line x1="77" y1="122" x2="95" y2="120" stroke="#000000" stroke-width="1"/>
-    <line x1="105" y1="112" x2="123" y2="114" stroke="#000000" stroke-width="1"/>
-    <line x1="105" y1="116" x2="123" y2="118" stroke="#000000" stroke-width="1"/>
-    <line x1="105" y1="120" x2="123" y2="122" stroke="#000000" stroke-width="1"/>
-  </svg>
-  PCOSS
-  <span>Equatoria Presbytery | Juba Parish</span>
-</a>
+      <svg class="brand-mark-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Presbyterian Church of South Sudan Logo">
+        <polygon points="100,5 195,100 100,195 5,100" fill="#ffffff" stroke="#2e7d32" stroke-width="4"/>
+        <polygon points="100,45 155,100 100,155 45,100" fill="#ffffff" stroke="#2e7d32" stroke-width="3"/>
+        <text x="50" y="55" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 50 55)">PRESBYTERIAN</text>
+        <text x="130" y="40" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 130 40)">CHURCH</text>
+        <text x="45" y="150" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 45 150)">OF SOUTH</text>
+        <text x="140" y="140" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 140 140)">SUDAN</text>
+        <path d="M100 52 V145 M78 82 H122" stroke="#d32f2f" stroke-width="12" stroke-linecap="square"/>
+        <text x="73" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">MY WORDS</text>
+        <text x="71" y="88" fill="#1565c0" font-size="4.5" font-weight="bold" font-family="sans-serif">WILL NEVER</text>
+        <text x="104" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">PASS AWAY</text>
+        <path d="M72 110 Q100 104 100 115 Q100 104 128 110 L128 126 Q100 120 100 128 Q100 120 72 126 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+        <line x1="100" y1="115" x2="100" y2="128" stroke="#000000" stroke-width="1.5"/>
+        <line x1="77" y1="114" x2="95" y2="112" stroke="#000000" stroke-width="1"/>
+        <line x1="77" y1="118" x2="95" y2="116" stroke="#000000" stroke-width="1"/>
+        <line x1="77" y1="122" x2="95" y2="120" stroke="#000000" stroke-width="1"/>
+        <line x1="105" y1="112" x2="123" y2="114" stroke="#000000" stroke-width="1"/>
+        <line x1="105" y1="116" x2="123" y2="118" stroke="#000000" stroke-width="1"/>
+        <line x1="105" y1="120" x2="123" y2="122" stroke="#000000" stroke-width="1"/>
+      </svg>
+      PCOSS
+      <span>Equatoria Presbytery | Juba Parish</span>
+    </a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">&#9776;</label>
     <ul class="nav-links">
@@ -263,7 +258,6 @@
     </div>
 </main>
 
-<!-- MODAL BLOCK WITH SEPARATE BUTTON CONTROLS -->
 <div id="mediaModal" class="media-modal" role="dialog" aria-modal="true">
     <div class="modal-controls">
         <button id="rotateVideoBtn" class="rotate-btn">🔄 Rotate Video</button>
@@ -276,7 +270,6 @@
     <div class="modal-caption" id="modalCaption"></div>
 </div>
 
-<!-- COMPREHENSIVE VIEW CONTROLLER LOGIC -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('mediaModal');
@@ -287,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const rotateBtn = document.getElementById('rotateVideoBtn');
     const galleryItems = document.querySelectorAll('.gallery-item-trigger');
 
-    let currentRotation = 0; // Tracks rotation degree steps
+    let currentRotation = 0;
 
     galleryItems.forEach(item => {
         item.addEventListener('click', function() {
@@ -295,7 +288,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const cardElement = this.closest('.gallery-card');
             const headline = cardElement.querySelector('h3').textContent;
 
-            // Reset modal values and rotation styling settings
             currentRotation = 0;
             modalVideo.style.transform = 'scale(1) rotate(0deg)';
             rotateBtn.style.display = 'none';
@@ -310,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mediaType === 'video') {
                 modalVideo.src = this.src;
                 modalVideo.style.display = 'block';
-                rotateBtn.style.display = 'inline-block'; // Reveal manual adjustment button
+                rotateBtn.style.display = 'inline-block';
             } else {
                 modalImg.src = this.src;
                 modalImg.style.display = 'block';
@@ -331,11 +323,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Rotation Control Engine
     rotateBtn.addEventListener('click', function() {
         currentRotation = (currentRotation + 90) % 360;
-        
-        // When video is flipped sideways (90 or 270 deg), scale down slightly to prevent window clipping
         if (currentRotation === 90 || currentRotation === 270) {
             modalVideo.style.transform = `scale(0.7) rotate(${currentRotation}deg)`;
         } else {

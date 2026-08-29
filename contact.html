@@ -6,10 +6,10 @@
 <title>Contact &amp; Give — Presbyterian Church of South Sudan</title>
 <meta name="description" content="Get in touch with the Presbyterian Church of South Sudan, find our location, or support the ministry through giving.">
 <link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
 
 <style>
-
-  .brand {
+.brand {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -184,32 +184,11 @@
     color: #c69a3b; 
     font-weight: bold;
 }
-
-<!--handling the logo CSS--> 
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.brand-mark-svg {
-    width: 46px;
-    height: 46px;
-    flex-shrink: 0;
-}
-
-
 </style>
-
-
 </head>
 <body>
 
-
-  
-
-
-  <!-- SIDEBAR TRIGGER BUTTON -->
+<!-- SIDEBAR TRIGGER BUTTON -->
 <button class="sidebar-trigger" id="openSidebarBtn">📖 Daily Verses</button>
 
 <!-- SLIDING VERSES SIDEBAR -->
@@ -232,53 +211,45 @@
     </div>
 </div>
 
-
-
 <header class="site-header">
   <nav class="nav">
     <a href="index.html" class="brand">
-  <svg class="brand-mark-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Presbyterian Church of South Sudan Logo">
-    <polygon points="100,5 195,100 100,195 5,100" fill="#ffffff" stroke="#2e7d32" stroke-width="4"/>
-    <polygon points="100,45 155,100 100,155 45,100" fill="#ffffff" stroke="#2e7d32" stroke-width="3"/>
-    <text x="50" y="55" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 50 55)">PRESBYTERIAN</text>
-    <text x="130" y="40" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 130 40)">CHURCH</text>
-    <text x="45" y="150" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 45 150)">OF SOUTH</text>
-    <text x="140" y="140" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 140 140)">SUDAN</text>
-    <path d="M100 52 V145 M78 82 H122" stroke="#d32f2f" stroke-width="12" stroke-linecap="square"/>
-    <text x="73" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">MY WORDS</text>
-    <text x="71" y="88" fill="#1565c0" font-size="4.5" font-weight="bold" font-family="sans-serif">WILL NEVER</text>
-    <text x="104" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">PASS AWAY</text>
-    <path d="M72 110 Q100 104 100 115 Q100 104 128 110 L128 126 Q100 120 100 128 Q100 120 72 126 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
-    <line x1="100" y1="115" x2="100" y2="128" stroke="#000000" stroke-width="1.5"/>
-    <line x1="77" y1="114" x2="95" y2="112" stroke="#000000" stroke-width="1"/>
-    <line x1="77" y1="118" x2="95" y2="116" stroke="#000000" stroke-width="1"/>
-    <line x1="77" y1="122" x2="95" y2="120" stroke="#000000" stroke-width="1"/>
-    <line x1="105" y1="112" x2="123" y2="114" stroke="#000000" stroke-width="1"/>
-    <line x1="105" y1="116" x2="123" y2="118" stroke="#000000" stroke-width="1"/>
-    <line x1="105" y1="120" x2="123" y2="122" stroke="#000000" stroke-width="1"/>
-  </svg>
-  PCOSS
-  <span>Equatoria Presbytery | Juba Parish</span>
-</a>
+      <svg class="brand-mark-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Presbyterian Church of South Sudan Logo">
+        <polygon points="100,5 195,100 100,195 5,100" fill="#ffffff" stroke="#2e7d32" stroke-width="4"/>
+        <polygon points="100,45 155,100 100,155 45,100" fill="#ffffff" stroke="#2e7d32" stroke-width="3"/>
+        <text x="50" y="55" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 50 55)">PRESBYTERIAN</text>
+        <text x="130" y="40" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 130 40)">CHURCH</text>
+        <text x="45" y="150" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(45 45 150)">OF SOUTH</text>
+        <text x="140" y="140" fill="#1565c0" font-size="13" font-weight="900" font-family="sans-serif" transform="rotate(-45 140 140)">SUDAN</text>
+        <path d="M100 52 V145 M78 82 H122" stroke="#d32f2f" stroke-width="12" stroke-linecap="square"/>
+        <text x="73" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">MY WORDS</text>
+        <text x="71" y="88" fill="#1565c0" font-size="4.5" font-weight="bold" font-family="sans-serif">WILL NEVER</text>
+        <text x="104" y="76" fill="#1565c0" font-size="5" font-weight="bold" font-family="sans-serif">PASS AWAY</text>
+        <path d="M72 110 Q100 104 100 115 Q100 104 128 110 L128 126 Q100 120 100 128 Q100 120 72 126 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+        <line x1="100" y1="115" x2="100" y2="128" stroke="#000000" stroke-width="1.5"/>
+        <line x1="77" y1="114" x2="95" y2="112" stroke="#000000" stroke-width="1"/>
+        <line x1="77" y1="118" x2="95" y2="116" stroke="#000000" stroke-width="1"/>
+        <line x1="77" y1="122" x2="95" y2="120" stroke="#000000" stroke-width="1"/>
+        <line x1="105" y1="112" x2="123" y2="114" stroke="#000000" stroke-width="1"/>
+        <line x1="105" y1="116" x2="123" y2="118" stroke="#000000" stroke-width="1"/>
+        <line x1="105" y1="120" x2="123" y2="122" stroke="#000000" stroke-width="1"/>
+      </svg>
+      PCOSS
+      <span>Equatoria Presbytery | Juba Parish</span>
+    </a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">&#9776;</label>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="live.html">Live Stream</a></li>
-          <li><a href="sermons.html">Sermons</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="events.html">Updates</a></li>
-          
-          <!-- Move Gallery HERE (Active class applies ONLY when viewing gallery.php) -->
-          <li><a href="gallery.php">Gallery</a></li>
-          
-          <!-- Keep Contact as the absolute last item -->
-          <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="live.html">Live Stream</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Updates</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
   </nav>
 </header>
-
-<button class="sidebar-trigger" id="openSidebarBtn">📖 Daily Verses</button>
 
 <section class="page-hero">
   <div class="container">
@@ -291,14 +262,11 @@
 <section class="section">
   <div class="container">
     <div class="grid grid-2" style="gap:48px; align-items:start;">
-
-      <!-- Contact form: HTML only. To actually receive submissions,
-           connect this form to a backend/form service (e.g. Formspree)
-           and set the action attribute below, or use a mailto: link. -->
       <div>
         <p class="eyebrow">Send a Message</p>
         <h2>Get in touch</h2>
-        <form action="contact.php" method="POST" style="margin-top:20px;">
+        <form id="contactForm" style="margin-top:20px;">
+          <div id="contactStatus" style="margin-bottom: 12px; font-weight: bold;"></div>
           <div class="form-field">
             <label for="name">Full name</label>
             <input type="text" id="name" name="name" required>
@@ -334,20 +302,14 @@
           <strong>Email:</strong> info@pcss-church.org
         </p>
 
-        <!--
-          MAP EMBED
-          Replace the src below with your church's actual Google Maps
-          embed link: Google Maps → Share → Embed a map → copy the src URL.
-        -->
         <div class="video-frame" style="margin-top:22px; border-color: var(--parchment-dk);">
           <iframe
-            src="https://www.google.com/maps?q=Juba,South+Sudan&output=embed"
+            src="https://www.google.com/maps?q=Juba,South+Sudan&amp;output=embed"
             title="Church location map"
             loading="lazy">
           </iframe>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -362,7 +324,6 @@
     <a href="#" class="btn btn-primary" style="margin-top:22px;">Learn About Giving</a>
   </div>
 </section>
-
 
 <footer class="site-footer">
   <div class="container">
@@ -409,9 +370,40 @@
   </div>
 </footer>
 
-
-<!-- SIDEBAR ENGINE CONTROLLER -->
 <script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const statusDiv = document.getElementById('contactStatus');
+  statusDiv.style.color = '#c69a3b';
+  statusDiv.textContent = 'Sending message...';
+
+  const payload = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    reason: document.getElementById('reason').value,
+    message: document.getElementById('message').value
+  };
+
+  fetch(`${API_BASE_URL}/api/contact`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if (!res.ok) throw new Error('Failed to send');
+    return res.json();
+  })
+  .then(() => {
+    statusDiv.style.color = '#4caf50';
+    statusDiv.textContent = 'Thank you! Your message has been sent.';
+    document.getElementById('contactForm').reset();
+  })
+  .catch(() => {
+    statusDiv.style.color = '#ff4d4d';
+    statusDiv.textContent = 'Error sending message. Please try again.';
+  });
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('verseSidebar');
     const openSidebarBtn = document.getElementById('openSidebarBtn');
@@ -426,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function() {
     openSidebarBtn.addEventListener('click', () => sidebar.classList.add('open'));
     closeSidebarBtn.addEventListener('click', () => sidebar.classList.remove('open'));
 
-    fetch('fetch_verses.php')
+    fetch(`${API_BASE_URL}/api/verses`)
         .then(response => response.json())
         .then(data => {
             if (data.error || data.length === 0) {
